@@ -561,6 +561,28 @@ th {
     min-height: 44px;
     font-size: 1rem;
   }
+
+  /* 平板 / 大屏手机：关闭耗性能的背景漂移，避免滚动卡顿 */
+  body::before {
+    animation: none;
+  }
+}
+
+/* ---------- 平板竖屏（≤768px）：首屏改为单栏，避免两栏挤压 ---------- */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .profile-card {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .lead {
+    max-width: 100%;
+  }
 }
 
 /* ---------- 手机端（≤600px）专项优化 ---------- */
