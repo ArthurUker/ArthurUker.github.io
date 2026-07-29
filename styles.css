@@ -345,11 +345,11 @@ h1 {
 }
 
 .focus-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
 }
 
 .project-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
 }
 
 .section-intro {
@@ -517,22 +517,15 @@ th {
 }
 
 @media (max-width: 960px) {
-  .hero-grid,
-  .focus-grid,
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
   .hero-grid {
     padding: 2.2rem 1.6rem;
   }
+
   .section .container {
     padding: 2.2rem 1.6rem;
   }
-}
 
-@media (max-width: 760px) {
-  /* 移动端下拉菜单用 absolute 定位在 header 之外，
-     必须放开 overflow，否则会被裁掉（点击“没反应”的真正原因） */
+  /* 窗口较窄时切换为汉堡菜单，避免内联导航拥挤换行 */
   .site-header {
     overflow: visible;
   }
