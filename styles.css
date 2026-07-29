@@ -526,8 +526,12 @@ th {
   }
 
   /* 窗口较窄时切换为汉堡菜单，避免内联导航拥挤换行 */
+  /* 关闭 header 自身的 backdrop-filter，避免与下拉菜单的 backdrop-filter 形成嵌套，
+     导致桌面端 Chrome 把菜单压到内容下方（之前“点击无反应”的根因） */
   .site-header {
     overflow: visible;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .menu-toggle {
@@ -542,13 +546,15 @@ th {
     position: absolute;
     inset: calc(100% + 6px) 0.6rem auto 0.6rem;
     z-index: 30;
-    background: rgba(255, 255, 255, 0.97);
+    background: var(--glass-pane);
     border: 1px solid var(--glass-border);
     border-radius: 1.1rem;
     padding: 0.5rem;
     box-shadow: var(--shadow);
     display: none;
     flex-direction: column;
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    backdrop-filter: blur(14px) saturate(180%);
   }
 
   .site-nav.open {
@@ -590,6 +596,8 @@ th {
   body {
     font-size: 15px;
     overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   .site-header {
@@ -613,8 +621,8 @@ th {
   }
 
   .hero-grid {
-    padding: 1.6rem 1.1rem;
-    gap: 1.5rem;
+    padding: 1.6rem 1.2rem;
+    gap: 1.4rem;
   }
 
   h1 {
@@ -625,12 +633,23 @@ th {
     font-size: 0.72rem;
   }
 
+  /* 首屏按钮全宽，触控更友好 */
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
   .section {
     padding: 2rem 0;
   }
 
   .section .container {
-    padding: 1.6rem 1.1rem;
+    padding: 1.6rem 1.2rem;
   }
 
   .focus-grid,
@@ -643,8 +662,14 @@ th {
     padding: 1.2rem 1.1rem;
   }
 
+  /* 卡片列表在窄屏更紧凑 */
+  .project-card ul {
+    padding-left: 1rem;
+  }
+
   .table-wrap {
     border-radius: 0.9rem;
+    -webkit-overflow-scrolling: touch;
   }
 
   th,
@@ -656,12 +681,44 @@ th {
   .contact-list {
     padding-left: 1rem;
   }
+
+  /* 手机端减小卡片悬浮位移/缩放，避免溢出与误触 */
+  .focus-card:hover,
+  .project-card:hover {
+    transform: translateY(-3px);
+  }
 }
 
 /* ---------- 小屏手机（≤400px）优化 ---------- */
 @media (max-width: 400px) {
   .container {
     width: calc(100% - 0.9rem);
+  }
+
+  .nav-wrap {
+    min-height: 48px;
+    padding: 0 0.4rem;
+    gap: 0.35rem;
+  }
+
+  .brand {
+    font-size: 0.82rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lang-switch {
+    flex: 0 0 auto;
+  }
+
+  .menu-toggle {
+    flex: 0 0 auto;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .hero {
+    padding: 3rem 0 1.6rem;
   }
 
   .hero-grid {
@@ -682,9 +739,12 @@ th {
     font-size: 0.95rem;
   }
 
-  /* 降低移动端背景动画开销 */
-  body::before {
-    animation: none;
+  .profile-card {
+    max-width: 100%;
+  }
+
+  .section-intro {
+    font-size: 0.94rem;
   }
 }
 
@@ -707,6 +767,22 @@ th {
   backdrop-filter: blur(14px) saturate(150%);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   background: rgba(255, 255, 255, 0.86);
+}
+
+/* 减弱透明度模式下，窄屏仍需关闭 header 模糊，避免与下拉菜单的 backdrop-filter 嵌套
+   导致菜单被压到内容下方（与上方 max-width:960px 的处理保持一致） */
+@media (prefers-reduced-transparency: reduce) and (max-width: 960px) {
+  .site-header {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (max-width: 960px) {
+  :root[data-reduce-transparency] .site-header {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 /* 2. Increase Contrast：加强文字与边框对比，照顾弱视力用户 */
