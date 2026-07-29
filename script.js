@@ -72,3 +72,26 @@ revealTargets.forEach((node) => {
   node.classList.add("reveal");
   observer.observe(node);
 });
+
+// Progressive profile image: show the lightweight placeholder first, then
+// swap to the high-resolution version once it has finished downloading.
+(function progressiveProfileImage() {
+  const img = document.getElementById("profile-img");
+  if (!img) return;
+  const full = img.getAttribute("data-full");
+  if (!full) return;
+  if (img.currentSrc && img.currentSrc.indexOf(full) !== -1) return;
+
+  const hd = new Image();
+  hd.decoding = "async";
+  hd.onload = () => {
+    const fadeIn = () => {
+      img.style.opacity = "1";
+      img.removeEventListener("load", fadeIn);
+    };
+    img.addEventListener("load", fadeIn);
+    img.style.opacity = "0";
+    img.src = full;
+  };
+  hd.src = full;
+})();
