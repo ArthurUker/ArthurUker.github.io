@@ -250,6 +250,11 @@ p {
   background: var(--glass-strong);
 }
 
+/* 关键修复：防止图片原始宽度撑破 grid 轨道，导致文字列被挤压、照片被裁切 */
+.hero-grid > * {
+  min-width: 0;
+}
+
 .eyebrow {
   font-weight: 600;
   color: var(--accent-2);
@@ -302,6 +307,8 @@ h1 {
 
 .profile-card {
   margin: 0;
+  max-width: 400px;
+  justify-self: center;
   border-radius: 1.7rem;
   padding: 0.8rem;
   transition: transform 0.3s;
@@ -314,6 +321,9 @@ h1 {
 .profile-card img {
   width: 100%;
   height: auto;
+  max-width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
   display: block;
   border-radius: 1.1rem;
 }
