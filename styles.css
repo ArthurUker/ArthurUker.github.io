@@ -541,11 +541,11 @@ th {
 
   .site-nav {
     position: absolute;
-    inset: 58px 0.8rem auto 0.8rem;
+    inset: 52px 0.6rem auto 0.6rem;
     background: var(--glass-strong);
     border: 1px solid var(--glass-border);
     border-radius: 1.1rem;
-    padding: 0.8rem;
+    padding: 0.5rem;
     box-shadow: var(--shadow);
     display: none;
     flex-direction: column;
@@ -555,6 +555,116 @@ th {
 
   .site-nav.open {
     display: flex;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 0.7rem 0.9rem;
+    min-height: 44px;
+    font-size: 1rem;
+  }
+}
+
+/* ---------- 手机端（≤600px）专项优化 ---------- */
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+    overflow-x: hidden;
+  }
+
+  .site-header {
+    width: calc(100% - 1rem);
+    top: 8px;
+  }
+
+  .nav-wrap {
+    min-height: 52px;
+    padding: 0 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .brand {
+    font-size: 0.95rem;
+  }
+
+  .hero {
+    padding: 3.4rem 0 2rem;
+    scroll-margin-top: 88px;
+  }
+
+  .hero-grid {
+    padding: 1.6rem 1.1rem;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 7.5vw, 2.4rem);
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+  }
+
+  .section {
+    padding: 2rem 0;
+  }
+
+  .section .container {
+    padding: 1.6rem 1.1rem;
+  }
+
+  .focus-grid,
+  .project-grid {
+    gap: 1rem;
+  }
+
+  .focus-card,
+  .project-card {
+    padding: 1.2rem 1.1rem;
+  }
+
+  .table-wrap {
+    border-radius: 0.9rem;
+  }
+
+  th,
+  td {
+    padding: 0.7rem 0.6rem;
+    font-size: 0.88rem;
+  }
+
+  .contact-list {
+    padding-left: 1rem;
+  }
+}
+
+/* ---------- 小屏手机（≤400px）优化 ---------- */
+@media (max-width: 400px) {
+  .container {
+    width: calc(100% - 0.9rem);
+  }
+
+  .hero-grid {
+    padding: 1.3rem 0.9rem;
+    gap: 1.2rem;
+  }
+
+  .section .container {
+    padding: 1.3rem 0.9rem;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  /* 降低移动端背景动画开销 */
+  body::before {
+    animation: none;
   }
 }
 
