@@ -878,9 +878,13 @@ th {
   flex: 1 1 calc(25% - 1rem);
   min-width: 140px;
   padding: 1.25rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow:
+    0 10px 26px rgba(31, 143, 126, 0.10),
+    inset 0 2px 0 rgba(255, 255, 255, 0.92),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   text-align: center;
 }
 
