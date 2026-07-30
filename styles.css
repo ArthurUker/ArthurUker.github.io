@@ -865,3 +865,42 @@ th {
   opacity: 0.75;
   margin-top: 0.3rem;
 }
+
+/* About Me — Quick Stats */
+.about-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.stat-item {
+  flex: 1 1 calc(25% - 1rem);
+  min-width: 140px;
+  padding: 1.25rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+@media (max-width: 640px) {
+  .stat-item {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
